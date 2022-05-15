@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct Good_OnesApp: App {
+struct GoodOnesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CardCollectionView(viewModel: CardCollectionViewModel())
         }
     }
 }

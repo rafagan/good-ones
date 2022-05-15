@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C9218CD2831242B000FC55C /* Good_OnesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218CC2831242B000FC55C /* Good_OnesApp.swift */; };
-		0C9218CF2831242B000FC55C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218CE2831242B000FC55C /* ContentView.swift */; };
+		0C9218CD2831242B000FC55C /* GoodOnesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218CC2831242B000FC55C /* GoodOnesApp.swift */; };
+		0C9218CF2831242B000FC55C /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218CE2831242B000FC55C /* CardCollectionView.swift */; };
 		0C9218D12831242E000FC55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C9218D02831242E000FC55C /* Assets.xcassets */; };
 		0C9218D42831242E000FC55C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C9218D32831242E000FC55C /* Preview Assets.xcassets */; };
 		0C9218DE2831242F000FC55C /* Good_OnesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218DD2831242F000FC55C /* Good_OnesTests.swift */; };
 		0C9218E82831242F000FC55C /* Good_OnesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218E72831242F000FC55C /* Good_OnesUITests.swift */; };
 		0C9218EA2831242F000FC55C /* Good_OnesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218E92831242F000FC55C /* Good_OnesUITestsLaunchTests.swift */; };
+		0C9218FB283147F8000FC55C /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218FA283147F8000FC55C /* Picture.swift */; };
+		0C9218FD28314853000FC55C /* IPictureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218FC28314853000FC55C /* IPictureProvider.swift */; };
+		0C9218FF28314874000FC55C /* LocalPictureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218FE28314874000FC55C /* LocalPictureProvider.swift */; };
+		0C92190128314885000FC55C /* GooglePhotoPictureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190028314885000FC55C /* GooglePhotoPictureProvider.swift */; };
+		0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */; };
+		0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190428314C71000FC55C /* CardCollectionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +41,8 @@
 
 /* Begin PBXFileReference section */
 		0C9218C92831242B000FC55C /* Good Ones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Good Ones.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C9218CC2831242B000FC55C /* Good_OnesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good_OnesApp.swift; sourceTree = "<group>"; };
-		0C9218CE2831242B000FC55C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0C9218CC2831242B000FC55C /* GoodOnesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodOnesApp.swift; sourceTree = "<group>"; };
+		0C9218CE2831242B000FC55C /* CardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
 		0C9218D02831242E000FC55C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C9218D32831242E000FC55C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0C9218D92831242F000FC55C /* Good OnesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Good OnesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +50,12 @@
 		0C9218E32831242F000FC55C /* Good OnesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Good OnesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9218E72831242F000FC55C /* Good_OnesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good_OnesUITests.swift; sourceTree = "<group>"; };
 		0C9218E92831242F000FC55C /* Good_OnesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good_OnesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0C9218FA283147F8000FC55C /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
+		0C9218FC28314853000FC55C /* IPictureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPictureProvider.swift; sourceTree = "<group>"; };
+		0C9218FE28314874000FC55C /* LocalPictureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPictureProvider.swift; sourceTree = "<group>"; };
+		0C92190028314885000FC55C /* GooglePhotoPictureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotoPictureProvider.swift; sourceTree = "<group>"; };
+		0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollPictureProvider.swift; sourceTree = "<group>"; };
+		0C92190428314C71000FC55C /* CardCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +106,10 @@
 		0C9218CB2831242B000FC55C /* Good Ones */ = {
 			isa = PBXGroup;
 			children = (
-				0C9218CC2831242B000FC55C /* Good_OnesApp.swift */,
-				0C9218CE2831242B000FC55C /* ContentView.swift */,
+				0C9218F828314796000FC55C /* ViewModel */,
+				0C9218F728314792000FC55C /* View */,
+				0C9218F62831478D000FC55C /* Model */,
+				0C9218CC2831242B000FC55C /* GoodOnesApp.swift */,
 				0C9218D02831242E000FC55C /* Assets.xcassets */,
 				0C9218D22831242E000FC55C /* Preview Content */,
 			);
@@ -125,6 +139,34 @@
 				0C9218E92831242F000FC55C /* Good_OnesUITestsLaunchTests.swift */,
 			);
 			path = "Good OnesUITests";
+			sourceTree = "<group>";
+		};
+		0C9218F62831478D000FC55C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C9218FA283147F8000FC55C /* Picture.swift */,
+				0C9218FC28314853000FC55C /* IPictureProvider.swift */,
+				0C9218FE28314874000FC55C /* LocalPictureProvider.swift */,
+				0C92190028314885000FC55C /* GooglePhotoPictureProvider.swift */,
+				0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0C9218F728314792000FC55C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C9218CE2831242B000FC55C /* CardCollectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0C9218F828314796000FC55C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0C92190428314C71000FC55C /* CardCollectionViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C9218CF2831242B000FC55C /* ContentView.swift in Sources */,
-				0C9218CD2831242B000FC55C /* Good_OnesApp.swift in Sources */,
+				0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */,
+				0C92190128314885000FC55C /* GooglePhotoPictureProvider.swift in Sources */,
+				0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */,
+				0C9218FB283147F8000FC55C /* Picture.swift in Sources */,
+				0C9218FF28314874000FC55C /* LocalPictureProvider.swift in Sources */,
+				0C9218FD28314853000FC55C /* IPictureProvider.swift in Sources */,
+				0C9218CF2831242B000FC55C /* CardCollectionView.swift in Sources */,
+				0C9218CD2831242B000FC55C /* GoodOnesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
