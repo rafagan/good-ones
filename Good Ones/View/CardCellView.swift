@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum CardTransition {
+    case leading
+    case trailing
+}
+
 struct CardCellView: View {
     var picture: Picture
     

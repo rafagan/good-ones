@@ -25,6 +25,13 @@ class CardCollectionViewModel: ObservableObject {
         foregroundPicture == nil && backgroundPicture == nil
     }
     
+    var visiblePictures: [Picture] {
+        var ps = [Picture]()
+        if let p = foregroundPicture { ps.append(p) }
+        if let p = backgroundPicture { ps.append(p) }
+        return ps
+    }
+    
     init() {
         fetchPhotos()
     }
