@@ -12,6 +12,6 @@ class CardCollectionViewModel: ObservableObject {
     @Published var pictures = [Picture]()
     
     init() {
-        self.pictures = provider.pictures.suffix(1)
+        self.pictures = provider.pictures
     }
 }
