@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-struct Picture {
+struct Picture: Identifiable {
+    let id = UUID()
     let image: UIImage
     let title: String
     let subtitle: String

@@ -8,5 +8,10 @@
 import Foundation
 
 class CardCollectionViewModel: ObservableObject {
-    let pictures = LocalPictureProvider().pictures
+    let provider = LocalPictureProvider()
+    @Published var pictures = [Picture]()
+    
+    init() {
+        self.pictures = provider.pictures.suffix(1)
+    }
 }
