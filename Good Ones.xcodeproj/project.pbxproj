@@ -21,8 +21,10 @@
 		0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */; };
 		0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190428314C71000FC55C /* CardCollectionViewModel.swift */; };
 		0C92190728314EA8000FC55C /* CardCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190628314EA8000FC55C /* CardCellView.swift */; };
-		0C92190928315E06000FC55C /* CardAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190828315E06000FC55C /* CardAnimation.swift */; };
+		0C92190928315E06000FC55C /* DragState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190828315E06000FC55C /* DragState.swift */; };
 		0C92190E283173F4000FC55C /* SymbolModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190D283173F4000FC55C /* SymbolModifier.swift */; };
+		0C92191328317CDA000FC55C /* IRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92191228317CDA000FC55C /* IRepository.swift */; };
+		0C92191528317CF0000FC55C /* FakeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92191428317CF0000FC55C /* FakeRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +62,10 @@
 		0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollPictureProvider.swift; sourceTree = "<group>"; };
 		0C92190428314C71000FC55C /* CardCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewModel.swift; sourceTree = "<group>"; };
 		0C92190628314EA8000FC55C /* CardCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellView.swift; sourceTree = "<group>"; };
-		0C92190828315E06000FC55C /* CardAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnimation.swift; sourceTree = "<group>"; };
+		0C92190828315E06000FC55C /* DragState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragState.swift; sourceTree = "<group>"; };
 		0C92190D283173F4000FC55C /* SymbolModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolModifier.swift; sourceTree = "<group>"; };
+		0C92191228317CDA000FC55C /* IRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRepository.swift; sourceTree = "<group>"; };
+		0C92191428317CF0000FC55C /* FakeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,11 +155,9 @@
 		0C9218F62831478D000FC55C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0C9218FA283147F8000FC55C /* Picture.swift */,
-				0C9218FC28314853000FC55C /* IPictureProvider.swift */,
-				0C9218FE28314874000FC55C /* LocalPictureProvider.swift */,
-				0C92190028314885000FC55C /* GooglePhotoPictureProvider.swift */,
-				0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */,
+				0C92191128317CB6000FC55C /* Repository */,
+				0C92191028317CB1000FC55C /* Entity */,
+				0C92190F28317CA2000FC55C /* Provider */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,7 +167,7 @@
 			children = (
 				0C9218CE2831242B000FC55C /* CardCollectionView.swift */,
 				0C92190628314EA8000FC55C /* CardCellView.swift */,
-				0C92190828315E06000FC55C /* CardAnimation.swift */,
+				0C92190828315E06000FC55C /* DragState.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,6 +186,34 @@
 				0C92190D283173F4000FC55C /* SymbolModifier.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		0C92190F28317CA2000FC55C /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				0C9218FC28314853000FC55C /* IPictureProvider.swift */,
+				0C9218FE28314874000FC55C /* LocalPictureProvider.swift */,
+				0C92190028314885000FC55C /* GooglePhotoPictureProvider.swift */,
+				0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		0C92191028317CB1000FC55C /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				0C9218FA283147F8000FC55C /* Picture.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		0C92191128317CB6000FC55C /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				0C92191228317CDA000FC55C /* IRepository.swift */,
+				0C92191428317CF0000FC55C /* FakeRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,7 +346,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C92190928315E06000FC55C /* CardAnimation.swift in Sources */,
+				0C92190928315E06000FC55C /* DragState.swift in Sources */,
+				0C92191528317CF0000FC55C /* FakeRepository.swift in Sources */,
 				0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */,
 				0C92190728314EA8000FC55C /* CardCellView.swift in Sources */,
 				0C92190E283173F4000FC55C /* SymbolModifier.swift in Sources */,
@@ -325,6 +356,7 @@
 				0C9218FB283147F8000FC55C /* Picture.swift in Sources */,
 				0C9218FF28314874000FC55C /* LocalPictureProvider.swift in Sources */,
 				0C9218FD28314853000FC55C /* IPictureProvider.swift in Sources */,
+				0C92191328317CDA000FC55C /* IRepository.swift in Sources */,
 				0C9218CF2831242B000FC55C /* CardCollectionView.swift in Sources */,
 				0C9218CD2831242B000FC55C /* GoodOnesApp.swift in Sources */,
 			);

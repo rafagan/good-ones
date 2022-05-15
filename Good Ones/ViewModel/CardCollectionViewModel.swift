@@ -9,9 +9,43 @@ import Foundation
 
 class CardCollectionViewModel: ObservableObject {
     let provider = LocalPictureProvider()
+    var repository = FakeRepository()
     @Published var pictures = [Picture]()
+    var currentPictureIndex = 0
+    
+    var foregroundPicture: Picture? {
+        currentPictureIndex < pictures.count ? pictures[currentPictureIndex] : nil
+    }
+    
+    var backgroundPicture: Picture? {
+        currentPictureIndex + 1 < pictures.count ? pictures[currentPictureIndex + 1] : nil
+    }
+    
+    var haveStarvedPictures: Bool {
+        foregroundPicture == nil && backgroundPicture == nil
+    }
     
     init() {
-        self.pictures = provider.pictures
+        fetchPhotos()
+    }
+    
+    func fetchPhotos() {
+        pictures = provider.pictures.filter({
+            !repository.pictureAlreadyBeenProcessed($0)
+        })
+    }
+    
+    func onDismiss() {
+        guard var pic = foregroundPicture else { return }
+        pic.choice = .dismissed
+        repository.savePicture(pic)
+        pictures.removeFirst()
+    }
+    
+    func onFavorite() {
+        guard var pic = foregroundPicture else { return }
+        pic.choice = .favorited
+        repository.savePicture(pic)
+        pictures.removeFirst()
     }
 }
