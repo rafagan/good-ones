@@ -19,7 +19,7 @@ struct CardCellView: View {
         Image(uiImage: picture.image)
             .resizable()
             .cornerRadius(24)
-            .scaledToFit()
+            .scaledToFill()
             .frame(minWidth: 0, maxWidth: .infinity)
             .overlay(
                 VStack(alignment: .center, spacing: 12) {
@@ -48,8 +48,7 @@ struct CardCellView: View {
                         )
                 }
                     .padding(.bottom, 50)
-                    .shadow(radius: 10)
-                ,
+                    .shadow(radius: 10),
                 alignment: .bottom
             )
             .background(Color(uiColor: UIColor.clear))
@@ -60,6 +59,5 @@ struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         CardCellView(picture: LocalPictureProvider().pictures[0])
             .previewLayout(.sizeThatFits)
-        
     }
 }

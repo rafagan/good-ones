@@ -42,17 +42,40 @@ class CardCollectionViewModel: ObservableObject {
         })
     }
     
-    func onDismiss() {
+    func willDismiss() {
+        playDismiss()
+        haptic()
+    }
+    
+    func didDismiss() {
         guard var pic = foregroundPicture else { return }
         pic.choice = .dismissed
         repository.savePicture(pic)
         pictures.removeFirst()
+        
+        if pictures.isEmpty {
+            didFinish()
+        }
     }
     
-    func onFavorite() {
+    func willFavorite() {
+        playFavorite()
+        haptic()
+    }
+    
+    func didFavorite() {
         guard var pic = foregroundPicture else { return }
         pic.choice = .favorited
         repository.savePicture(pic)
         pictures.removeFirst()
+        
+        if pictures.isEmpty {
+            didFinish()
+        }
+    }
+    
+    func didFinish() {
+        playContratulations()
+        vibrate()
     }
 }

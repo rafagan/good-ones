@@ -25,6 +25,7 @@
 		0C92190E283173F4000FC55C /* SymbolModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190D283173F4000FC55C /* SymbolModifier.swift */; };
 		0C92191328317CDA000FC55C /* IRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92191228317CDA000FC55C /* IRepository.swift */; };
 		0C92191528317CF0000FC55C /* FakeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92191428317CF0000FC55C /* FakeRepository.swift */; };
+		0C92191B2831AD36000FC55C /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92191A2831AD36000FC55C /* Feedback.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		0C92190D283173F4000FC55C /* SymbolModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolModifier.swift; sourceTree = "<group>"; };
 		0C92191228317CDA000FC55C /* IRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRepository.swift; sourceTree = "<group>"; };
 		0C92191428317CF0000FC55C /* FakeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRepository.swift; sourceTree = "<group>"; };
+		0C92191A2831AD36000FC55C /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,8 @@
 		0C9218CB2831242B000FC55C /* Good Ones */ = {
 			isa = PBXGroup;
 			children = (
+				0C92191C2831B5EA000FC55C /* Extension */,
+				0C9219192831AD29000FC55C /* Util */,
 				0C92190C283173DD000FC55C /* Modifier */,
 				0C9218F828314796000FC55C /* ViewModel */,
 				0C9218F728314792000FC55C /* View */,
@@ -214,6 +218,21 @@
 				0C92191428317CF0000FC55C /* FakeRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		0C9219192831AD29000FC55C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				0C92191A2831AD36000FC55C /* Feedback.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		0C92191C2831B5EA000FC55C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C92190928315E06000FC55C /* DragState.swift in Sources */,
+				0C92191B2831AD36000FC55C /* Feedback.swift in Sources */,
 				0C92191528317CF0000FC55C /* FakeRepository.swift in Sources */,
 				0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */,
 				0C92190728314EA8000FC55C /* CardCellView.swift in Sources */,

@@ -102,13 +102,15 @@ struct CardCollectionView: View {
                                 guard case .second(true, let drag?) = value else { return }
                                 
                                 if isFlippingLeft(drag.translation) {
+                                    viewModel.willDismiss()
                                     makeTransition(.leading) {
-                                        viewModel.onDismiss()
+                                        viewModel.didDismiss()
                                     }
                                 }
                                 if isFlippingRight(drag.translation) {
+                                    viewModel.willFavorite()
                                     makeTransition(.trailing) {
-                                        viewModel.onDismiss()
+                                        viewModel.didFavorite()
                                     }
                                 }
                             }
