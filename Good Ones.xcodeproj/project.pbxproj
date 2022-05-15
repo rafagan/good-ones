@@ -20,6 +20,7 @@
 		0C92190128314885000FC55C /* GooglePhotoPictureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190028314885000FC55C /* GooglePhotoPictureProvider.swift */; };
 		0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */; };
 		0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190428314C71000FC55C /* CardCollectionViewModel.swift */; };
+		0C92190728314EA8000FC55C /* CardCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92190628314EA8000FC55C /* CardCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		0C92190028314885000FC55C /* GooglePhotoPictureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotoPictureProvider.swift; sourceTree = "<group>"; };
 		0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollPictureProvider.swift; sourceTree = "<group>"; };
 		0C92190428314C71000FC55C /* CardCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewModel.swift; sourceTree = "<group>"; };
+		0C92190628314EA8000FC55C /* CardCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				0C9218CE2831242B000FC55C /* CardCollectionView.swift */,
+				0C92190628314EA8000FC55C /* CardCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */,
+				0C92190728314EA8000FC55C /* CardCellView.swift in Sources */,
 				0C92190128314885000FC55C /* GooglePhotoPictureProvider.swift in Sources */,
 				0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */,
 				0C9218FB283147F8000FC55C /* Picture.swift in Sources */,

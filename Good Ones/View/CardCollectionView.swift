@@ -11,8 +11,7 @@ struct CardCollectionView: View {
     @ObservedObject var viewModel: CardCollectionViewModel
     
     var body: some View {
-        Image(uiImage: viewModel.pictures.first!.image)
-            .padding()
+        CardCellView(picture: viewModel.pictures[0])
     }
 }
 

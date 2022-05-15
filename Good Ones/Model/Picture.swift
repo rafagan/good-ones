@@ -10,8 +10,14 @@ import UIKit
 
 struct Picture {
     let image: UIImage
+    let title: String
+    let subtitle: String
     
     static func factoryFromLocal(fileName: String) -> Picture {
-        Picture(image: UIImage(named: fileName)!)
+        Picture(
+            image: UIImage(named: fileName)!,
+            title: fileName,
+            subtitle: "1970-01-01"
+        )
     }
 }
