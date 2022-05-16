@@ -7,11 +7,38 @@
 
 import SwiftUI
 
+enum SceneType {
+    case main
+    case onboarding
+    case congrats
+}
+
+class AppState: ObservableObject {
+    @Published var scene: SceneType
+
+    init(scene: SceneType) {
+        self.scene = scene
+    }
+}
+
 @main
 struct GoodOnesApp: App {
+    @ObservedObject var appState = AppState(scene: .main)
+    
     var body: some Scene {
         WindowGroup {
-            CardCollectionView(viewModel: CardCollectionViewModel())
+            switch appState.scene {
+            case .main:
+                CardCollectionView(viewModel: CardCollectionViewModel(appState: appState))
+                    .environmentObject(appState)
+            case .congrats:
+                CongratulationsView()
+                    .environmentObject(appState)
+            case .onboarding:
+                OnboardingView()
+                    .environmentObject(appState)
+            }
         }
     }
 }
+

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardCollectionView: View {
+    @EnvironmentObject var appState: AppState
     @ObservedObject var viewModel: CardCollectionViewModel
     @GestureState private var dragState = DragState.inactive
     @State private var cardTransition: CardTransition? = nil
@@ -51,7 +52,7 @@ struct CardCollectionView: View {
     
     func makeTransition(_ transition: CardTransition, then: @escaping () -> Void) {
         cardTransition = transition
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             cardTransition = nil
             then()
         }
@@ -116,10 +117,6 @@ struct CardCollectionView: View {
                             }
                         )
                 }
-                
-                ZStack {
-                    Text("Finished")
-                }.opacity(viewModel.haveStarvedPictures ? 1.0 : 0.0)
             }
             .padding(.horizontal)
         }
@@ -128,6 +125,6 @@ struct CardCollectionView: View {
 
 struct CardCollectionView_Previews: PreviewProvider {
     static var previews: some View {
-        CardCollectionView(viewModel: CardCollectionViewModel())
+        CardCollectionView(viewModel: CardCollectionViewModel(appState: nil))
     }
 }

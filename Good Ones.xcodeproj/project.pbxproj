@@ -26,6 +26,12 @@
 		0C92191328317CDA000FC55C /* IRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92191228317CDA000FC55C /* IRepository.swift */; };
 		0C92191528317CF0000FC55C /* FakeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92191428317CF0000FC55C /* FakeRepository.swift */; };
 		0C92191B2831AD36000FC55C /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92191A2831AD36000FC55C /* Feedback.swift */; };
+		0C9219212831B98B000FC55C /* CongratulationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219202831B98B000FC55C /* CongratulationsView.swift */; };
+		0C9219232831BB38000FC55C /* FireworksModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219222831BB38000FC55C /* FireworksModifier.swift */; };
+		0C9219252831BB80000FC55C /* FireworksGeometryEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219242831BB80000FC55C /* FireworksGeometryEffect.swift */; };
+		0C9219272831C269000FC55C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219262831C269000FC55C /* OnboardingView.swift */; };
+		0C92192D2831C911000FC55C /* ScaleTextSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92192C2831C911000FC55C /* ScaleTextSizeModifier.swift */; };
+		0C92192F2831C951000FC55C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92192E2831C951000FC55C /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +74,12 @@
 		0C92191228317CDA000FC55C /* IRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRepository.swift; sourceTree = "<group>"; };
 		0C92191428317CF0000FC55C /* FakeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRepository.swift; sourceTree = "<group>"; };
 		0C92191A2831AD36000FC55C /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		0C9219202831B98B000FC55C /* CongratulationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsView.swift; sourceTree = "<group>"; };
+		0C9219222831BB38000FC55C /* FireworksModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworksModifier.swift; sourceTree = "<group>"; };
+		0C9219242831BB80000FC55C /* FireworksGeometryEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworksGeometryEffect.swift; sourceTree = "<group>"; };
+		0C9219262831C269000FC55C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		0C92192C2831C911000FC55C /* ScaleTextSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleTextSizeModifier.swift; sourceTree = "<group>"; };
+		0C92192E2831C951000FC55C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,9 +181,12 @@
 		0C9218F728314792000FC55C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0C92191F2831B978000FC55C /* Util */,
 				0C9218CE2831242B000FC55C /* CardCollectionView.swift */,
 				0C92190628314EA8000FC55C /* CardCellView.swift */,
-				0C92190828315E06000FC55C /* DragState.swift */,
+				0C9219202831B98B000FC55C /* CongratulationsView.swift */,
+				0C9219242831BB80000FC55C /* FireworksGeometryEffect.swift */,
+				0C9219262831C269000FC55C /* OnboardingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				0C92190D283173F4000FC55C /* SymbolModifier.swift */,
+				0C9219222831BB38000FC55C /* FireworksModifier.swift */,
+				0C92192C2831C911000FC55C /* ScaleTextSizeModifier.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -231,8 +248,17 @@
 		0C92191C2831B5EA000FC55C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0C92192E2831C951000FC55C /* View.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0C92191F2831B978000FC55C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				0C92190828315E06000FC55C /* DragState.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,13 +394,19 @@
 				0C92190928315E06000FC55C /* DragState.swift in Sources */,
 				0C92191B2831AD36000FC55C /* Feedback.swift in Sources */,
 				0C92191528317CF0000FC55C /* FakeRepository.swift in Sources */,
+				0C9219272831C269000FC55C /* OnboardingView.swift in Sources */,
 				0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */,
 				0C92190728314EA8000FC55C /* CardCellView.swift in Sources */,
+				0C9219252831BB80000FC55C /* FireworksGeometryEffect.swift in Sources */,
 				0C92190E283173F4000FC55C /* SymbolModifier.swift in Sources */,
 				0C92190128314885000FC55C /* GooglePhotoPictureProvider.swift in Sources */,
 				0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */,
 				0C9218FB283147F8000FC55C /* Picture.swift in Sources */,
+				0C92192D2831C911000FC55C /* ScaleTextSizeModifier.swift in Sources */,
+				0C92192F2831C951000FC55C /* View.swift in Sources */,
+				0C9219232831BB38000FC55C /* FireworksModifier.swift in Sources */,
 				0C9218FF28314874000FC55C /* LocalPictureProvider.swift in Sources */,
+				0C9219212831B98B000FC55C /* CongratulationsView.swift in Sources */,
 				0C9218FD28314853000FC55C /* IPictureProvider.swift in Sources */,
 				0C92191328317CDA000FC55C /* IRepository.swift in Sources */,
 				0C9218CF2831242B000FC55C /* CardCollectionView.swift in Sources */,

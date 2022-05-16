@@ -9,6 +9,7 @@ import Foundation
 
 class CardCollectionViewModel: ObservableObject {
     let provider = LocalPictureProvider()
+    let appState: AppState?
     var repository = FakeRepository()
     @Published var pictures = [Picture]()
     var currentPictureIndex = 0
@@ -32,7 +33,8 @@ class CardCollectionViewModel: ObservableObject {
         return ps
     }
     
-    init() {
+    init(appState: AppState?) {
+        self.appState = appState
         fetchPhotos()
     }
     
@@ -77,5 +79,6 @@ class CardCollectionViewModel: ObservableObject {
     func didFinish() {
         playContratulations()
         vibrate()
+        appState?.scene = .congrats
     }
 }
