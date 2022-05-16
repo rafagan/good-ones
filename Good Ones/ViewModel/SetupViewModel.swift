@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GPhotos
 
 class SetupViewModel: ObservableObject {
     let appState: AppState?
@@ -20,10 +21,22 @@ class SetupViewModel: ObservableObject {
     }
     
     func setupGooglePhotos() {
-        appState?.scene = .main
+        isStarting = true
         repository.photoProvider = .googlePhotos
         
-        appState?.provider = GooglePhotoPictureProvider()
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            GPhotos.authorize()
+            
+            guard let self = self else { return }
+            
+            self.appState?.provider = GPhotos.isAuthorized
+                ? GooglePhotoPictureProvider(repository: self.repository)
+                : LocalPictureProvider(repository: self.repository)
+         
+            self.appState?.provider?.fetchAlbum {
+                self.routeToMain()
+            }
+        }
     }
     
     func setupPhotoKit() {
@@ -36,13 +49,17 @@ class SetupViewModel: ObservableObject {
                 : LocalPictureProvider(repository: self.repository)
             
             DispatchQueue.global(qos: .userInitiated).async {[weak self] in
-                self?.appState?.provider?.fetchAlbum()
-                
-                self?.appState?.provider?.sync {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self?.appState?.scene = .main
-                    }
+                self?.appState?.provider?.fetchAlbum {
+                    self?.routeToMain()
                 }
+            }
+        }
+    }
+    
+    func routeToMain() {
+        DispatchQueue.main.async { [weak self] in
+            self?.appState?.provider?.sync {
+                self?.appState?.scene = .main
             }
         }
     }

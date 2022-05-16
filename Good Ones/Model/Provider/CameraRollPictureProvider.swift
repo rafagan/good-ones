@@ -47,7 +47,7 @@ class CameraRollPictureProvider: IPictureProvider {
         self.repository = repository
     }
     
-    func fetchAlbum() {
+    func fetchAlbum(then: (() -> Void)? = nil) {
         let enumerateAssetsCallback: (PHAsset, Int, UnsafeMutablePointer<ObjCBool>) -> Void = { asset, idx, stop in
             if self.repository.pictureAlreadyBeenProcessed(id: asset.localIdentifier) { return }
             self.assets.append(asset)
@@ -65,6 +65,7 @@ class CameraRollPictureProvider: IPictureProvider {
             let assets = PHAsset.fetchAssets(with: options)
             assets.enumerateObjects(enumerateAssetsCallback)
             desiredAssetCount = assets.count
+            then?()
         } else {
             PHAssetCollection.fetchAssetCollections(
                 with: .album,
@@ -76,12 +77,9 @@ class CameraRollPictureProvider: IPictureProvider {
                 let assets = PHAsset.fetchAssets(in: collection, options: nil)
                 assets.enumerateObjects(enumerateAssetsCallback)
                 self.desiredAssetCount = assets.count
+                then?()
             })
         }
-        
-//        while assets.count < desiredAssetCount {
-//            print(assets.count)
-//        }
     }
     
     func sync(then: @escaping () -> Void) {
@@ -119,7 +117,7 @@ class CameraRollPictureProvider: IPictureProvider {
         options.version = .current
         options.resizeMode = .fast
         options.isNetworkAccessAllowed = true
-        options.isSynchronous = false
+        options.isSynchronous = true
         
         options.deliveryMode = .fastFormat
         self.fetchImage(asset, targetSize: self.previewResolution, options: options) {

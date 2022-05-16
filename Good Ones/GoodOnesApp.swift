@@ -27,6 +27,7 @@ class AppState: ObservableObject {
 struct GoodOnesApp: App {
     let repository = UserDefaultsRepository()
     @ObservedObject var appState: AppState
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     init() {
         self.appState = AppState(scene: repository.isOnboardingDone ? .setup : .onboarding)

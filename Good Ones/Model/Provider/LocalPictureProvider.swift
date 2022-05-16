@@ -32,7 +32,7 @@ class LocalPictureProvider: IPictureProvider {
         self.repository = repository
     }
     
-    func fetchAlbum() {
+    func fetchAlbum(then: (() -> Void)? = nil) {
     }
     
     func sync(then: @escaping () -> Void) {

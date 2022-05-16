@@ -1,0 +1,56 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AppAuth (1.5.0):
+    - AppAuth/Core (= 1.5.0)
+    - AppAuth/ExternalUserAgent (= 1.5.0)
+  - AppAuth/Core (1.5.0)
+  - AppAuth/ExternalUserAgent (1.5.0):
+    - AppAuth/Core
+  - GPhotos (0.6.0):
+    - AppAuth (~> 1.0)
+    - GTMAppAuth (~> 1.0.0)
+    - Moya (~> 13.0)
+    - ObjectMapper (~> 3.4)
+  - GTMAppAuth (1.0.0):
+    - AppAuth/Core (~> 1.0)
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.7.2):
+    - GTMSessionFetcher/Full (= 1.7.2)
+  - GTMSessionFetcher/Core (1.7.2)
+  - GTMSessionFetcher/Full (1.7.2):
+    - GTMSessionFetcher/Core (= 1.7.2)
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya/Core (13.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.1)
+  - ObjectMapper (3.5.3)
+  - Result (4.1.0)
+
+DEPENDENCIES:
+  - GPhotos
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AppAuth
+    - GPhotos
+    - GTMAppAuth
+    - GTMSessionFetcher
+    - Moya
+    - ObjectMapper
+    - Result
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  GPhotos: ecf2ea0944a5a53e3516a353d131a91af968ce16
+  GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+
+PODFILE CHECKSUM: 8438a57453962af0db908c282f0f4c47b9ab7ab1
+
+COCOAPODS: 1.11.3
