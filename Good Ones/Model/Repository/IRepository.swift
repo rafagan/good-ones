@@ -8,5 +8,6 @@
 import Foundation
 
 protocol IRepository {
-    
+    func savePicture(_ picture: Picture)
+    func pictureAlreadyBeenProcessed(id: String) -> Bool
 }

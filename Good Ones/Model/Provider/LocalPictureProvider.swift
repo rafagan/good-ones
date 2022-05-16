@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct LocalPictureProvider: IPictureProvider {
+class LocalPictureProvider: IPictureProvider {
     static func factoryPicture(fileName: String) -> Picture {
         return Picture(
             id: UUID().uuidString,
@@ -18,17 +18,31 @@ struct LocalPictureProvider: IPictureProvider {
         )
     }
     
-    var pictures: [Picture] {
-        [
-            LocalPictureProvider.factoryPicture(fileName: "Cat1"),
-            LocalPictureProvider.factoryPicture(fileName: "Cat2"),
-            LocalPictureProvider.factoryPicture(fileName: "Cat3"),
-            LocalPictureProvider.factoryPicture(fileName: "Cat4"),
-            LocalPictureProvider.factoryPicture(fileName: "Cat5")
-        ]
+    var cachedPictures = [
+        LocalPictureProvider.factoryPicture(fileName: "Cat1"),
+        LocalPictureProvider.factoryPicture(fileName: "Cat2"),
+        LocalPictureProvider.factoryPicture(fileName: "Cat3"),
+        LocalPictureProvider.factoryPicture(fileName: "Cat4"),
+        LocalPictureProvider.factoryPicture(fileName: "Cat5")
+    ]
+    
+    private let repository: IRepository
+    
+    init(repository: IRepository) {
+        self.repository = repository
     }
     
     func fetchAlbum() {
-        
+    }
+    
+    func sync(then: @escaping () -> Void) {
+        cachedPictures = cachedPictures.filter({ !repository.pictureAlreadyBeenProcessed(id: $0.id) })
+        then()
+    }
+    
+    func consume() -> [Picture] {
+        let pics = cachedPictures
+        cachedPictures = [Picture]()
+        return pics
     }
 }

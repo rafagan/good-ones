@@ -60,6 +60,10 @@ struct CardCollectionView: View {
     
     var body: some View {
         VStack {
+            if viewModel.isStarting {
+                ProgressView()
+            }
+            
             ZStack {
                 ForEach(viewModel.visiblePictures) { picture in
                     let isTopCard = isTop(picture: picture)
@@ -127,7 +131,5 @@ struct CardCollectionView: View {
 struct CardCollectionView_Previews: PreviewProvider {
     static var previews: some View {
         CardCollectionView(viewModel: CardCollectionViewModel(appState: nil))
-            .preferredColorScheme(.light)
-            .previewLayout(.sizeThatFits)
     }
 }

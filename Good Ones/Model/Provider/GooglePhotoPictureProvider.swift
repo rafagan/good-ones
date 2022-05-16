@@ -8,12 +8,17 @@
 import Foundation
 
 struct GooglePhotoPictureProvider: IPictureProvider {
-    var pictures: [Picture] {
-        [
-        ]
-    }
-    
     func fetchAlbum() {
         
     }
+    
+    
+    func sync(then: @escaping () -> Void) {
+        
+    }
+    
+    func consume() -> [Picture] {
+        return []
+    }
+    
 }

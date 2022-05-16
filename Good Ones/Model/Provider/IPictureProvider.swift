@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IPictureProvider {
-    var pictures: [Picture] { get }
-    
     func fetchAlbum()
+    func sync(then: @escaping () -> Void)
+    func consume() -> [Picture]
 }

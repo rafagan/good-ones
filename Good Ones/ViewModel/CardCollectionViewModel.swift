@@ -8,11 +8,15 @@
 import Foundation
 
 class CardCollectionViewModel: ObservableObject {
-    var provider: IPictureProvider!
     let appState: AppState?
+    var provider: IPictureProvider!
     var repository = FakeRepository()
-    @Published var pictures = [Picture]()
     var currentPictureIndex = 0
+    let photoCacheSize = 10
+    
+    @Published var pictures = [Picture]()
+    @Published var isStarting = false
+    @Published var isLoading = false
     
     var foregroundPicture: Picture? {
         currentPictureIndex < pictures.count ? pictures[currentPictureIndex] : nil
@@ -36,23 +40,47 @@ class CardCollectionViewModel: ObservableObject {
     init(appState: AppState?) {
         self.appState = appState
         fetchPhotos()
+        
+        UserDefaults.resetStandardUserDefaults()
     }
     
+    // TODO: Primeira foto nao aparece
+    // TODO: Identificar se foto é landscape
+    // TODO: Verificar persistencias
+    
     func fetchPhotos() {
+        isStarting = true
+        
         CameraRollPictureProvider.askPermission { authorized in
-//            self.provider = LocalPictureProvider()
             self.provider = authorized
-                ? CameraRollPictureProvider()
-                : LocalPictureProvider()
+                ? CameraRollPictureProvider(repository: self.repository, photoCacheSize: self.photoCacheSize)
+                : LocalPictureProvider(repository: self.repository)
             
-            self.provider.fetchAlbum()
+            DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+                self?.provider.fetchAlbum()
+                
+                DispatchQueue.main.async {
+                    self?.isStarting = false
+                    self?.synchronize()
+                }
+            }
+        }
+    }
+    
+    func synchronize() {
+        provider.sync { [weak self] in
+            guard let self = self else { return }
             
-            self.pictures = self.provider.pictures.filter({
-                !self.repository.pictureAlreadyBeenProcessed($0)
-            })
+            if self.pictures.count < self.photoCacheSize / 2 {
+                self.pictures.append(contentsOf: self.provider.consume())
+            }
             
             if self.pictures.isEmpty {
                 self.didFinish()
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.synchronize()
             }
         }
     }
@@ -63,7 +91,7 @@ class CardCollectionViewModel: ObservableObject {
     }
     
     func didDismiss() {
-        guard var pic = foregroundPicture else { return }
+        guard let pic = foregroundPicture else { return }
         pic.choice = .dismissed
         repository.savePicture(pic)
         pictures.removeFirst()
@@ -79,7 +107,7 @@ class CardCollectionViewModel: ObservableObject {
     }
     
     func didFavorite() {
-        guard var pic = foregroundPicture else { return }
+        guard let pic = foregroundPicture else { return }
         pic.choice = .favorited
         repository.savePicture(pic)
         pictures.removeFirst()

@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct FakeRepository: IRepository {
+class FakeRepository: IRepository {
     var processedOnes = Set<String>()
     
-    mutating func savePicture(_ picture: Picture) {
+    func savePicture(_ picture: Picture) {
         print("Picture \(picture.id) saved")
         processedOnes.insert(picture.id)
     }
     
-    func pictureAlreadyBeenProcessed(_ picture: Picture) -> Bool {
-        processedOnes.contains(picture.id)
+    func pictureAlreadyBeenProcessed(id: String) -> Bool {
+        processedOnes.contains(id)
     }
 }

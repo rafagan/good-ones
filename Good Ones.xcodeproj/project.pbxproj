@@ -33,6 +33,7 @@
 		0C92192D2831C911000FC55C /* ScaleTextSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92192C2831C911000FC55C /* ScaleTextSizeModifier.swift */; };
 		0C92192F2831C951000FC55C /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92192E2831C951000FC55C /* View+.swift */; };
 		0C9219332831EF82000FC55C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219322831EF82000FC55C /* Date+.swift */; };
+		0C92193528327E24000FC55C /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92193428327E24000FC55C /* UserDefaultsRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		0C92192C2831C911000FC55C /* ScaleTextSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleTextSizeModifier.swift; sourceTree = "<group>"; };
 		0C92192E2831C951000FC55C /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		0C9219322831EF82000FC55C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		0C92193428327E24000FC55C /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 			children = (
 				0C92191228317CDA000FC55C /* IRepository.swift */,
 				0C92191428317CF0000FC55C /* FakeRepository.swift */,
+				0C92193428327E24000FC55C /* UserDefaultsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				0C92190128314885000FC55C /* GooglePhotoPictureProvider.swift in Sources */,
 				0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */,
 				0C9218FB283147F8000FC55C /* Picture.swift in Sources */,
+				0C92193528327E24000FC55C /* UserDefaultsRepository.swift in Sources */,
 				0C92192D2831C911000FC55C /* ScaleTextSizeModifier.swift in Sources */,
 				0C92192F2831C951000FC55C /* View+.swift in Sources */,
 				0C9219232831BB38000FC55C /* FireworksModifier.swift in Sources */,

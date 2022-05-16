@@ -10,22 +10,11 @@ import Photos
 import UIKit
 
 
-enum AlbumCollectionSectionType: Int, CustomStringConvertible {
-    case all, smartAlbums, userCollections
-
-    var description: String {
-        switch self {
-            case .all: return "All Photos"
-            case .smartAlbums: return "Smart Albums"
-            case .userCollections: return "User Collections"
-        }
-    }
-}
-
-
 class CameraRollPictureProvider: IPictureProvider {
     static let useAllPhotos = false
-    let defaultPhotoResolution = CGSize(width: 3264, height: 2448)
+    let resolution = CGSize(width: 3264, height: 2448)
+    let previewResolution = CGSize(width: 3264 / 10, height: 2448 / 10)
+    let photoCacheSize: Int
     
     static func askPermission(then: @escaping (Bool) -> Void) {
         guard PHPhotoLibrary.authorizationStatus() != .authorized else {
@@ -38,59 +27,106 @@ class CameraRollPictureProvider: IPictureProvider {
         }
     }
     
-    var pictures = [Picture]()
+    static func factoryPicture(asset: PHAsset, image: UIImage?) -> Picture {
+        Picture(
+            id: asset.creationDate!.description,
+            image: image,
+            title: asset.creationDate?.getFormattedDate(style: .short) ?? "",
+            subtitle: asset.creationDate?.getFormattedDate(style: .full) ?? "",
+            choice: .unknown
+        )
+    }
+    
+    private var assets = [PHAsset]()
+    private var lastIndex = 0
+    private let repository: IRepository
+    
+    var cachedPictures = [Picture]()
+    
+    init(repository: IRepository, photoCacheSize: Int) {
+        self.repository = repository
+        self.photoCacheSize = photoCacheSize
+    }
     
     func fetchAlbum() {
-        let allPhotosOptions = PHFetchOptions()
-        allPhotosOptions.sortDescriptors = [
-            NSSortDescriptor(
-                key: "creationDate",
-                ascending: false
-            )
-        ]
+        let enumerateAssetsCallback: (PHAsset, Int, UnsafeMutablePointer<ObjCBool>) -> Void = { asset, idx, stop in
+            if self.repository.pictureAlreadyBeenProcessed(id: asset.localIdentifier) { return }
+            self.assets.append(asset)
+        }
         
         if CameraRollPictureProvider.useAllPhotos {
-            PHAsset.fetchAssets(
-                with: allPhotosOptions
-            ).enumerateObjects({asset, idx, stop in
-                self.fetchAsset(asset)
-            })
+            let options = PHFetchOptions()
+            options.sortDescriptors = [
+                NSSortDescriptor(
+                    key: "creationDate",
+                    ascending: false
+                )
+            ]
+            options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
+            PHAsset.fetchAssets(with: options)
+                .enumerateObjects(enumerateAssetsCallback)
         } else {
             PHAssetCollection.fetchAssetCollections(
                 with: .album,
                 subtype: .albumRegular,
                 options: nil
             ).enumerateObjects({collection, idx, stop in
-                if collection.localizedTitle == "Test" {
-                    PHAsset.fetchAssets(
-                        in: collection,
-                        options: nil
-                    ).enumerateObjects({asset, idx, stop in
-                        self.fetchAsset(asset)
-                    })
-                }
+                guard collection.localizedTitle == "Test" else { return }
+                
+                PHAsset.fetchAssets(in: collection, options: nil)
+                    .enumerateObjects(enumerateAssetsCallback)
             })
         }
     }
     
+    func sync(then: @escaping () -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let amountToLoad = self.photoCacheSize - self.cachedPictures.count
+            for _ in 0..<amountToLoad {
+                if self.lastIndex >= self.assets.count{
+                    break
+                }
+                
+                let asset = self.assets[self.lastIndex]
+                let picture = Self.factoryPicture(asset: asset, image: nil)
+                self.cachedPictures.append(picture)
+                
+                weak var weakPicture = picture
+                self.fetchAsset(asset, in: weakPicture)
+                self.lastIndex += 1
+            }
+
+            DispatchQueue.main.async {
+                then()
+            }
+        }
+    }
     
-    func fetchAsset(_ asset: PHAsset) {
+    func consume() -> [Picture] {
+        let pics = cachedPictures
+        cachedPictures = [Picture]()
+        print("consumed \(cachedPictures.count)")
+        return pics
+    }
+    
+    
+    func fetchAsset(_ asset: PHAsset, in picture: Picture?) {
         let options = PHImageRequestOptions()
         options.version = .current
         options.resizeMode = .fast
-        options.deliveryMode = .highQualityFormat // TODO: Use opportunistic
         options.isNetworkAccessAllowed = true
-        options.isSynchronous = true
+        options.isSynchronous = false
         
-        self.fetchImage(asset, targetSize: self.defaultPhotoResolution, options: options) {
+        options.deliveryMode = .fastFormat
+        self.fetchImage(asset, targetSize: self.previewResolution, options: options) {
             guard let img = $0 else { return }
-            self.pictures.append(Picture(
-                id: asset.localIdentifier,
-                image: img,
-                title: asset.creationDate?.getFormattedDate(style: .short) ?? "",
-                subtitle: asset.creationDate?.getFormattedDate(style: .full) ?? "",
-                choice: .unknown
-            ))
+            picture?.image = img
+        }
+        
+        options.deliveryMode = .highQualityFormat
+        self.fetchImage(asset, targetSize: self.resolution, options: options) {
+            guard let img = $0 else { return }
+            picture?.image = img
         }
     }
     

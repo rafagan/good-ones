@@ -18,11 +18,14 @@ struct CardCellView: View {
     
     var body: some View {
         VStack {
-            Image(uiImage: picture.image)
-                .resizable()
-                .cornerRadius(24)
-                .scaledToFit()
-                .frame(minWidth: 0, maxWidth: .infinity)
+            if let img = picture.image {
+                Image(uiImage: img)
+                    .resizable()
+                    .cornerRadius(24)
+                    .scaledToFit()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+            }
+
             
             if showDescription {
                 VStack(alignment: .center, spacing: 12) {
@@ -59,7 +62,7 @@ struct CardCellView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardCellView(picture: LocalPictureProvider().pictures[3], showDescription: true)
+        CardCellView(picture: LocalPictureProvider(repository: FakeRepository()).cachedPictures[3], showDescription: true)
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
         

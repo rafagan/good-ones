@@ -14,10 +14,18 @@ enum PictureChoice: String {
     case unknown = "unknown"
 }
 
-struct Picture: Identifiable {
+class Picture: Identifiable {
     let id: String
-    let image: UIImage
+    var image: UIImage?
     let title: String
     let subtitle: String
     var choice: PictureChoice
+    
+    init(id: String, image: UIImage?, title: String, subtitle: String, choice: PictureChoice) {
+        self.id = id
+        self.image = image
+        self.title = title
+        self.subtitle = subtitle
+        self.choice = choice
+    }
 }
