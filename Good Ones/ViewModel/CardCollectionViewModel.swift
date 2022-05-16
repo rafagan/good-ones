@@ -9,14 +9,10 @@ import Foundation
 
 class CardCollectionViewModel: ObservableObject {
     let appState: AppState?
-    var provider: IPictureProvider!
-    var repository = FakeRepository()
+    var repository = UserDefaultsRepository()
     var currentPictureIndex = 0
-    let photoCacheSize = 10
     
     @Published var pictures = [Picture]()
-    @Published var isStarting = false
-    @Published var isLoading = false
     
     var foregroundPicture: Picture? {
         currentPictureIndex < pictures.count ? pictures[currentPictureIndex] : nil
@@ -37,42 +33,21 @@ class CardCollectionViewModel: ObservableObject {
         return ps
     }
     
-    init(appState: AppState?) {
+    init(appState: AppState? = nil) {
         self.appState = appState
-        fetchPhotos()
-        
-        UserDefaults.resetStandardUserDefaults()
+        synchronize()
     }
     
-    // TODO: Primeira foto nao aparece
     // TODO: Identificar se foto é landscape
-    // TODO: Verificar persistencias
-    
-    func fetchPhotos() {
-        isStarting = true
-        
-        CameraRollPictureProvider.askPermission { authorized in
-            self.provider = authorized
-                ? CameraRollPictureProvider(repository: self.repository, photoCacheSize: self.photoCacheSize)
-                : LocalPictureProvider(repository: self.repository)
-            
-            DispatchQueue.global(qos: .userInitiated).async {[weak self] in
-                self?.provider.fetchAlbum()
-                
-                DispatchQueue.main.async {
-                    self?.isStarting = false
-                    self?.synchronize()
-                }
-            }
-        }
-    }
     
     func synchronize() {
+        guard let provider = appState?.provider else { return }
+        
         provider.sync { [weak self] in
             guard let self = self else { return }
             
-            if self.pictures.count < self.photoCacheSize / 2 {
-                self.pictures.append(contentsOf: self.provider.consume())
+            if self.pictures.count < photoCacheSize / 2 {
+                self.pictures.append(contentsOf: provider.consume())
             }
             
             if self.pictures.isEmpty {

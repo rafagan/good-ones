@@ -11,10 +11,12 @@ enum SceneType {
     case main
     case onboarding
     case congrats
+    case setup
 }
 
 class AppState: ObservableObject {
     @Published var scene: SceneType
+    var provider: IPictureProvider?
 
     init(scene: SceneType) {
         self.scene = scene
@@ -23,7 +25,12 @@ class AppState: ObservableObject {
 
 @main
 struct GoodOnesApp: App {
-    @ObservedObject var appState = AppState(scene: .main)
+    let repository = UserDefaultsRepository()
+    @ObservedObject var appState: AppState
+    
+    init() {
+        self.appState = AppState(scene: repository.isOnboardingDone ? .setup : .onboarding)
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -35,7 +42,10 @@ struct GoodOnesApp: App {
                 CongratulationsView()
                     .environmentObject(appState)
             case .onboarding:
-                OnboardingView()
+                OnboardingView(viewModel: OnboardingViewModel(appState: appState))
+                    .environmentObject(appState)
+            case .setup:
+                SetupView(viewModel: SetupViewModel(appState: appState))
                     .environmentObject(appState)
             }
         }

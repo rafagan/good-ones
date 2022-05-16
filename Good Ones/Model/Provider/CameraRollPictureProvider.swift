@@ -14,7 +14,6 @@ class CameraRollPictureProvider: IPictureProvider {
     static let useAllPhotos = false
     let resolution = CGSize(width: 3264, height: 2448)
     let previewResolution = CGSize(width: 3264 / 10, height: 2448 / 10)
-    let photoCacheSize: Int
     
     static func askPermission(then: @escaping (Bool) -> Void) {
         guard PHPhotoLibrary.authorizationStatus() != .authorized else {
@@ -29,7 +28,7 @@ class CameraRollPictureProvider: IPictureProvider {
     
     static func factoryPicture(asset: PHAsset, image: UIImage?) -> Picture {
         Picture(
-            id: asset.creationDate!.description,
+            id: asset.localIdentifier,
             image: image,
             title: asset.creationDate?.getFormattedDate(style: .short) ?? "",
             subtitle: asset.creationDate?.getFormattedDate(style: .full) ?? "",
@@ -38,14 +37,14 @@ class CameraRollPictureProvider: IPictureProvider {
     }
     
     private var assets = [PHAsset]()
+    private var desiredAssetCount = Int.max
     private var lastIndex = 0
     private let repository: IRepository
     
     var cachedPictures = [Picture]()
     
-    init(repository: IRepository, photoCacheSize: Int) {
+    init(repository: IRepository) {
         self.repository = repository
-        self.photoCacheSize = photoCacheSize
     }
     
     func fetchAlbum() {
@@ -63,8 +62,9 @@ class CameraRollPictureProvider: IPictureProvider {
                 )
             ]
             options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
-            PHAsset.fetchAssets(with: options)
-                .enumerateObjects(enumerateAssetsCallback)
+            let assets = PHAsset.fetchAssets(with: options)
+            assets.enumerateObjects(enumerateAssetsCallback)
+            desiredAssetCount = assets.count
         } else {
             PHAssetCollection.fetchAssetCollections(
                 with: .album,
@@ -73,17 +73,22 @@ class CameraRollPictureProvider: IPictureProvider {
             ).enumerateObjects({collection, idx, stop in
                 guard collection.localizedTitle == "Test" else { return }
                 
-                PHAsset.fetchAssets(in: collection, options: nil)
-                    .enumerateObjects(enumerateAssetsCallback)
+                let assets = PHAsset.fetchAssets(in: collection, options: nil)
+                assets.enumerateObjects(enumerateAssetsCallback)
+                self.desiredAssetCount = assets.count
             })
         }
+        
+//        while assets.count < desiredAssetCount {
+//            print(assets.count)
+//        }
     }
     
     func sync(then: @escaping () -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
-            let amountToLoad = self.photoCacheSize - self.cachedPictures.count
+            let amountToLoad = photoCacheSize - self.cachedPictures.count
             for _ in 0..<amountToLoad {
-                if self.lastIndex >= self.assets.count{
+                if self.lastIndex >= self.assets.count {
                     break
                 }
                 
@@ -105,7 +110,6 @@ class CameraRollPictureProvider: IPictureProvider {
     func consume() -> [Picture] {
         let pics = cachedPictures
         cachedPictures = [Picture]()
-        print("consumed \(cachedPictures.count)")
         return pics
     }
     

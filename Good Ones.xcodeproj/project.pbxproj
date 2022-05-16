@@ -34,6 +34,10 @@
 		0C92192F2831C951000FC55C /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92192E2831C951000FC55C /* View+.swift */; };
 		0C9219332831EF82000FC55C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219322831EF82000FC55C /* Date+.swift */; };
 		0C92193528327E24000FC55C /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92193428327E24000FC55C /* UserDefaultsRepository.swift */; };
+		0C9219372832C143000FC55C /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219362832C143000FC55C /* OnboardingViewModel.swift */; };
+		0C9219392832C6B5000FC55C /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219382832C6B5000FC55C /* SetupView.swift */; };
+		0C92193B2832C9E2000FC55C /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92193A2832C9E2000FC55C /* SetupViewModel.swift */; };
+		0C92193E2832D6E4000FC55C /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92193D2832D6E4000FC55C /* Global.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +88,10 @@
 		0C92192E2831C951000FC55C /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		0C9219322831EF82000FC55C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		0C92193428327E24000FC55C /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
+		0C9219362832C143000FC55C /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		0C9219382832C6B5000FC55C /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		0C92193A2832C9E2000FC55C /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
+		0C92193D2832D6E4000FC55C /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +142,7 @@
 		0C9218CB2831242B000FC55C /* Good Ones */ = {
 			isa = PBXGroup;
 			children = (
+				0C92193C2832D6DA000FC55C /* App */,
 				0C92191C2831B5EA000FC55C /* Extension */,
 				0C9219192831AD29000FC55C /* Util */,
 				0C92190C283173DD000FC55C /* Modifier */,
@@ -191,6 +200,7 @@
 				0C9219202831B98B000FC55C /* CongratulationsView.swift */,
 				0C9219242831BB80000FC55C /* FireworksGeometryEffect.swift */,
 				0C9219262831C269000FC55C /* OnboardingView.swift */,
+				0C9219382832C6B5000FC55C /* SetupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				0C92190428314C71000FC55C /* CardCollectionViewModel.swift */,
+				0C9219362832C143000FC55C /* OnboardingViewModel.swift */,
+				0C92193A2832C9E2000FC55C /* SetupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -216,8 +228,8 @@
 		0C92190F28317CA2000FC55C /* Provider */ = {
 			isa = PBXGroup;
 			children = (
-				0C9218FC28314853000FC55C /* IPictureProvider.swift */,
 				0C9218FE28314874000FC55C /* LocalPictureProvider.swift */,
+				0C9218FC28314853000FC55C /* IPictureProvider.swift */,
 				0C92190028314885000FC55C /* GooglePhotoPictureProvider.swift */,
 				0C921902283148B6000FC55C /* CameraRollPictureProvider.swift */,
 			);
@@ -265,6 +277,14 @@
 				0C92190828315E06000FC55C /* DragState.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		0C92193C2832D6DA000FC55C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0C92193D2832D6E4000FC55C /* Global.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,19 +425,23 @@
 				0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */,
 				0C92190728314EA8000FC55C /* CardCellView.swift in Sources */,
 				0C9219252831BB80000FC55C /* FireworksGeometryEffect.swift in Sources */,
+				0C92193B2832C9E2000FC55C /* SetupViewModel.swift in Sources */,
 				0C92190E283173F4000FC55C /* SymbolModifier.swift in Sources */,
 				0C92190128314885000FC55C /* GooglePhotoPictureProvider.swift in Sources */,
 				0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */,
 				0C9218FB283147F8000FC55C /* Picture.swift in Sources */,
 				0C92193528327E24000FC55C /* UserDefaultsRepository.swift in Sources */,
 				0C92192D2831C911000FC55C /* ScaleTextSizeModifier.swift in Sources */,
+				0C9219372832C143000FC55C /* OnboardingViewModel.swift in Sources */,
 				0C92192F2831C951000FC55C /* View+.swift in Sources */,
 				0C9219232831BB38000FC55C /* FireworksModifier.swift in Sources */,
+				0C92193E2832D6E4000FC55C /* Global.swift in Sources */,
 				0C9218FF28314874000FC55C /* LocalPictureProvider.swift in Sources */,
 				0C9219212831B98B000FC55C /* CongratulationsView.swift in Sources */,
 				0C9218FD28314853000FC55C /* IPictureProvider.swift in Sources */,
 				0C92191328317CDA000FC55C /* IRepository.swift in Sources */,
 				0C9218CF2831242B000FC55C /* CardCollectionView.swift in Sources */,
+				0C9219392832C6B5000FC55C /* SetupView.swift in Sources */,
 				0C9218CD2831242B000FC55C /* GoodOnesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
