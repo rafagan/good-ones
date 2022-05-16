@@ -8,7 +8,7 @@
 import Foundation
 
 struct FakeRepository: IRepository {
-    var processedOnes = Set<UUID>()
+    var processedOnes = Set<String>()
     
     mutating func savePicture(_ picture: Picture) {
         print("Picture \(picture.id) saved")

@@ -14,14 +14,17 @@ enum CardTransition {
 
 struct CardCellView: View {
     var picture: Picture
+    var showDescription: Bool
     
     var body: some View {
-        Image(uiImage: picture.image)
-            .resizable()
-            .cornerRadius(24)
-            .scaledToFill()
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .overlay(
+        VStack {
+            Image(uiImage: picture.image)
+                .resizable()
+                .cornerRadius(24)
+                .scaledToFit()
+                .frame(minWidth: 0, maxWidth: .infinity)
+            
+            if showDescription {
                 VStack(alignment: .center, spacing: 12) {
                     Text(picture.title.uppercased())
                         .foregroundColor(Color.white)
@@ -47,17 +50,18 @@ struct CardCellView: View {
                             Capsule().fill(Color.white)
                         )
                 }
-                    .padding(.bottom, 50)
-                    .shadow(radius: 10),
-                alignment: .bottom
-            )
-            .background(Color(uiColor: UIColor.clear))
+                .padding(.bottom, 50)
+                .shadow(radius: 10)
+            }
+        }
     }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardCellView(picture: LocalPictureProvider().pictures[0])
+        CardCellView(picture: LocalPictureProvider().pictures[3], showDescription: true)
+            .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
+        
     }
 }

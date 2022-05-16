@@ -64,7 +64,7 @@ struct CardCollectionView: View {
                 ForEach(viewModel.visiblePictures) { picture in
                     let isTopCard = isTop(picture: picture)
                     
-                    CardCellView(picture: picture)
+                    CardCellView(picture: picture, showDescription: isTopCard)
                         .overlay(ZStack {
                             Image(systemName: "x.circle")
                                 .modifier(SymbolModifier())
@@ -119,6 +119,7 @@ struct CardCollectionView: View {
                 }
             }
             .padding(.horizontal)
+            .background(Color.black)
         }
     }
 }
@@ -126,5 +127,7 @@ struct CardCollectionView: View {
 struct CardCollectionView_Previews: PreviewProvider {
     static var previews: some View {
         CardCollectionView(viewModel: CardCollectionViewModel(appState: nil))
+            .preferredColorScheme(.light)
+            .previewLayout(.sizeThatFits)
     }
 }

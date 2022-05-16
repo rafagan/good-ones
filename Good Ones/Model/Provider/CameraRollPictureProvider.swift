@@ -25,6 +25,7 @@ enum AlbumCollectionSectionType: Int, CustomStringConvertible {
 
 class CameraRollPictureProvider: IPictureProvider {
     static let useAllPhotos = false
+    let defaultPhotoResolution = CGSize(width: 3264, height: 2448)
     
     static func askPermission(then: @escaping (Bool) -> Void) {
         guard PHPhotoLibrary.authorizationStatus() != .authorized else {
@@ -49,41 +50,48 @@ class CameraRollPictureProvider: IPictureProvider {
         ]
         
         if CameraRollPictureProvider.useAllPhotos {
-            let allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)
-            
-            allPhotos.enumerateObjects({asset, idx, stop in
-                self.fetchImage(asset, targetSize: CGSize(width: 100, height: 100)) {
-                    guard let img = $0 else { return }
-                    self.pictures.append(Picture(
-                        image: img,
-                        title: asset.localIdentifier,
-                        subtitle: asset.creationDate?.description ?? "?",
-                        choice: .unknown
-                    ))
+            PHAsset.fetchAssets(
+                with: allPhotosOptions
+            ).enumerateObjects({asset, idx, stop in
+                self.fetchAsset(asset)
+            })
+        } else {
+            PHAssetCollection.fetchAssetCollections(
+                with: .album,
+                subtype: .albumRegular,
+                options: nil
+            ).enumerateObjects({collection, idx, stop in
+                if collection.localizedTitle == "Test" {
+                    PHAsset.fetchAssets(
+                        in: collection,
+                        options: nil
+                    ).enumerateObjects({asset, idx, stop in
+                        self.fetchAsset(asset)
+                    })
                 }
             })
         }
+    }
+    
+    
+    func fetchAsset(_ asset: PHAsset) {
+        let options = PHImageRequestOptions()
+        options.version = .current
+        options.resizeMode = .fast
+        options.deliveryMode = .highQualityFormat // TODO: Use opportunistic
+        options.isNetworkAccessAllowed = true
+        options.isSynchronous = true
         
-        PHAssetCollection.fetchAssetCollections(
-            with: .album,
-            subtype: .albumRegular,
-            options: nil
-        ).enumerateObjects({collection, idx, stop in
-            if collection.localizedTitle == "Test" {
-                let assets = PHAsset.fetchAssets(in: collection, options: nil)
-                assets.enumerateObjects({asset, idx, stop in
-                    self.fetchImage(asset, targetSize: CGSize(width: 100, height: 100)) {
-                        guard let img = $0 else { return }
-                        self.pictures.append(Picture(
-                            image: img,
-                            title: asset.localIdentifier,
-                            subtitle: asset.creationDate?.description ?? "?",
-                            choice: .unknown
-                        ))
-                    }
-                })
-            }
-        })
+        self.fetchImage(asset, targetSize: self.defaultPhotoResolution, options: options) {
+            guard let img = $0 else { return }
+            self.pictures.append(Picture(
+                id: asset.localIdentifier,
+                image: img,
+                title: asset.creationDate?.getFormattedDate(style: .short) ?? "",
+                subtitle: asset.creationDate?.getFormattedDate(style: .full) ?? "",
+                choice: .unknown
+            ))
+        }
     }
     
     func fetchImage(

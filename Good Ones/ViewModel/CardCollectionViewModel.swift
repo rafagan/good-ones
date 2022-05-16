@@ -40,6 +40,7 @@ class CardCollectionViewModel: ObservableObject {
     
     func fetchPhotos() {
         CameraRollPictureProvider.askPermission { authorized in
+//            self.provider = LocalPictureProvider()
             self.provider = authorized
                 ? CameraRollPictureProvider()
                 : LocalPictureProvider()
