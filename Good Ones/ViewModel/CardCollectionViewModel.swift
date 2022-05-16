@@ -9,6 +9,7 @@ import Foundation
 
 class CardCollectionViewModel: ObservableObject {
     let appState: AppState?
+    let imageSaver = ImageSaver()
     var repository = UserDefaultsRepository()
     var currentPictureIndex = 0
     
@@ -73,6 +74,12 @@ class CardCollectionViewModel: ObservableObject {
     }
     
     func didFavorite() {
+        if repository.photoProvider == .googlePhotos {
+            if let photo = foregroundPicture?.image {
+                imageSaver.savePhoto(photo)
+            }
+        }
+        
         runAction(.favorited)
     }
     

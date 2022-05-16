@@ -6,6 +6,7 @@ PODS:
   - AppAuth/Core (1.5.0)
   - AppAuth/ExternalUserAgent (1.5.0):
     - AppAuth/Core
+  - CocoaImageHashing (1.9.0)
   - GPhotos (0.6.0):
     - AppAuth (~> 1.0)
     - GTMAppAuth (~> 1.0.0)
@@ -28,6 +29,7 @@ PODS:
   - Result (4.1.0)
 
 DEPENDENCIES:
+  - CocoaImageHashing (from `https://github.com/ameingast/cocoaimagehashing.git`)
   - GPhotos
 
 SPEC REPOS:
@@ -41,9 +43,19 @@ SPEC REPOS:
     - ObjectMapper
     - Result
 
+EXTERNAL SOURCES:
+  CocoaImageHashing:
+    :git: https://github.com/ameingast/cocoaimagehashing.git
+
+CHECKOUT OPTIONS:
+  CocoaImageHashing:
+    :commit: ad01eee3c3f91bd181f7f4eba7f48f7cb211b51c
+    :git: https://github.com/ameingast/cocoaimagehashing.git
+
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  CocoaImageHashing: 8656031d0899abe6c1c415827de43e9798189c53
   GPhotos: ecf2ea0944a5a53e3516a353d131a91af968ce16
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
@@ -51,6 +63,6 @@ SPEC CHECKSUMS:
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
 
-PODFILE CHECKSUM: 8438a57453962af0db908c282f0f4c47b9ab7ab1
+PODFILE CHECKSUM: d342b3185670c8934ca8b29628bdf83a3d48a0fc
 
 COCOAPODS: 1.11.3

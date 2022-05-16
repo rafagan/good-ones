@@ -7,6 +7,7 @@ target 'Good Ones' do
 
   # Pods for Good Ones
   pod 'GPhotos'
+  pod 'CocoaImageHashing', :git => 'https://github.com/ameingast/cocoaimagehashing.git'
 
   target 'Good OnesTests' do
     inherit! :search_paths

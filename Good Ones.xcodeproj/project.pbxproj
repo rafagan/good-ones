@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C7FC04C2832EFE6006FE686 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C7FC04B2832EFE6006FE686 /* GoogleService-Info.plist */; };
 		0C7FC04E2832FC70006FE686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7FC04D2832FC70006FE686 /* AppDelegate.swift */; };
-		0C7FC0502832FDC8006FE686 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7FC04F2832FDC8006FE686 /* ViewController.swift */; };
 		0C7FC052283305DD006FE686 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7FC051283305DD006FE686 /* UIImage+.swift */; };
+		0C7FC055283311EE006FE686 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7FC054283311EE006FE686 /* ImageSaver.swift */; };
 		0C9218CD2831242B000FC55C /* GoodOnesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218CC2831242B000FC55C /* GoodOnesApp.swift */; };
 		0C9218CF2831242B000FC55C /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9218CE2831242B000FC55C /* CardCollectionView.swift */; };
 		0C9218D12831242E000FC55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C9218D02831242E000FC55C /* Assets.xcassets */; };
@@ -67,8 +67,8 @@
 /* Begin PBXFileReference section */
 		0C7FC04B2832EFE6006FE686 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C7FC04D2832FC70006FE686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0C7FC04F2832FDC8006FE686 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C7FC051283305DD006FE686 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		0C7FC054283311EE006FE686 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		0C9218C92831242B000FC55C /* Good Ones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Good Ones.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9218CC2831242B000FC55C /* GoodOnesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodOnesApp.swift; sourceTree = "<group>"; };
 		0C9218CE2831242B000FC55C /* CardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
@@ -142,6 +142,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C7FC053283311D7006FE686 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				0C7FC054283311EE006FE686 /* ImageSaver.swift */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
 		0C9218C02831242B000FC55C = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +218,7 @@
 		0C9218F62831478D000FC55C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0C7FC053283311D7006FE686 /* IO */,
 				0C92191128317CB6000FC55C /* Repository */,
 				0C92191028317CB1000FC55C /* Entity */,
 				0C92190F28317CA2000FC55C /* Provider */,
@@ -311,7 +320,6 @@
 			children = (
 				0C92193D2832D6E4000FC55C /* Global.swift */,
 				0C7FC04D2832FC70006FE686 /* AppDelegate.swift */,
-				0C7FC04F2832FDC8006FE686 /* ViewController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -586,6 +594,7 @@
 				0C7FC052283305DD006FE686 /* UIImage+.swift in Sources */,
 				0C921903283148B6000FC55C /* CameraRollPictureProvider.swift in Sources */,
 				0C92190728314EA8000FC55C /* CardCellView.swift in Sources */,
+				0C7FC055283311EE006FE686 /* ImageSaver.swift in Sources */,
 				0C9219252831BB80000FC55C /* FireworksGeometryEffect.swift in Sources */,
 				0C92193B2832C9E2000FC55C /* SetupViewModel.swift in Sources */,
 				0C92190E283173F4000FC55C /* SymbolModifier.swift in Sources */,
@@ -597,7 +606,6 @@
 				0C9219372832C143000FC55C /* OnboardingViewModel.swift in Sources */,
 				0C92192F2831C951000FC55C /* View+.swift in Sources */,
 				0C9219232831BB38000FC55C /* FireworksModifier.swift in Sources */,
-				0C7FC0502832FDC8006FE686 /* ViewController.swift in Sources */,
 				0C92193E2832D6E4000FC55C /* Global.swift in Sources */,
 				0C9218FF28314874000FC55C /* LocalPictureProvider.swift in Sources */,
 				0C9219212831B98B000FC55C /* CongratulationsView.swift in Sources */,
@@ -769,7 +777,8 @@
 				DEVELOPMENT_TEAM = Z2AQRMWEPF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow to us hel you select  the Good Ones";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Add your favorite photos from Google to your iOS gallery";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow us to help you selecting the Good Ones";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -801,7 +810,8 @@
 				DEVELOPMENT_TEAM = Z2AQRMWEPF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow to us hel you select  the Good Ones";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Add your favorite photos from Google to your iOS gallery";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow us to help you selecting the Good Ones";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
