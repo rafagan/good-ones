@@ -17,4 +17,8 @@ struct LocalPictureProvider: IPictureProvider {
             Picture.factoryFromLocal(fileName: "Cat5")
         ]
     }
+    
+    func fetchAlbum() {
+        
+    }
 }

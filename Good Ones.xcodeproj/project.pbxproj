@@ -31,7 +31,7 @@
 		0C9219252831BB80000FC55C /* FireworksGeometryEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219242831BB80000FC55C /* FireworksGeometryEffect.swift */; };
 		0C9219272831C269000FC55C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219262831C269000FC55C /* OnboardingView.swift */; };
 		0C92192D2831C911000FC55C /* ScaleTextSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92192C2831C911000FC55C /* ScaleTextSizeModifier.swift */; };
-		0C92192F2831C951000FC55C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92192E2831C951000FC55C /* View.swift */; };
+		0C92192F2831C951000FC55C /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C92192E2831C951000FC55C /* View+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +79,7 @@
 		0C9219242831BB80000FC55C /* FireworksGeometryEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworksGeometryEffect.swift; sourceTree = "<group>"; };
 		0C9219262831C269000FC55C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		0C92192C2831C911000FC55C /* ScaleTextSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleTextSizeModifier.swift; sourceTree = "<group>"; };
-		0C92192E2831C951000FC55C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		0C92192E2831C951000FC55C /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +248,7 @@
 		0C92191C2831B5EA000FC55C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				0C92192E2831C951000FC55C /* View.swift */,
+				0C92192E2831C951000FC55C /* View+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -403,7 +403,7 @@
 				0C92190528314C71000FC55C /* CardCollectionViewModel.swift in Sources */,
 				0C9218FB283147F8000FC55C /* Picture.swift in Sources */,
 				0C92192D2831C911000FC55C /* ScaleTextSizeModifier.swift in Sources */,
-				0C92192F2831C951000FC55C /* View.swift in Sources */,
+				0C92192F2831C951000FC55C /* View+.swift in Sources */,
 				0C9219232831BB38000FC55C /* FireworksModifier.swift in Sources */,
 				0C9218FF28314874000FC55C /* LocalPictureProvider.swift in Sources */,
 				0C9219212831B98B000FC55C /* CongratulationsView.swift in Sources */,
@@ -572,6 +572,7 @@
 				DEVELOPMENT_TEAM = Z2AQRMWEPF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow to us hel you select  the Good Ones";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -602,6 +603,7 @@
 				DEVELOPMENT_TEAM = Z2AQRMWEPF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow to us hel you select  the Good Ones";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

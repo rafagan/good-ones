@@ -8,7 +8,7 @@
 import Foundation
 
 class CardCollectionViewModel: ObservableObject {
-    let provider = LocalPictureProvider()
+    var provider: IPictureProvider!
     let appState: AppState?
     var repository = FakeRepository()
     @Published var pictures = [Picture]()
@@ -39,9 +39,21 @@ class CardCollectionViewModel: ObservableObject {
     }
     
     func fetchPhotos() {
-        pictures = provider.pictures.filter({
-            !repository.pictureAlreadyBeenProcessed($0)
-        })
+        CameraRollPictureProvider.askPermission { authorized in
+            self.provider = authorized
+                ? CameraRollPictureProvider()
+                : LocalPictureProvider()
+            
+            self.provider.fetchAlbum()
+            
+            self.pictures = self.provider.pictures.filter({
+                !self.repository.pictureAlreadyBeenProcessed($0)
+            })
+            
+            if self.pictures.isEmpty {
+                self.didFinish()
+            }
+        }
     }
     
     func willDismiss() {

@@ -9,4 +9,6 @@ import Foundation
 
 protocol IPictureProvider {
     var pictures: [Picture] { get }
+    
+    func fetchAlbum()
 }

@@ -12,4 +12,8 @@ struct GooglePhotoPictureProvider: IPictureProvider {
         [
         ]
     }
+    
+    func fetchAlbum() {
+        
+    }
 }
