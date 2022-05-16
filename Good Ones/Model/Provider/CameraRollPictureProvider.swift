@@ -120,15 +120,18 @@ class CameraRollPictureProvider: IPictureProvider {
         options.isSynchronous = true
         
         options.deliveryMode = .fastFormat
-        self.fetchImage(asset, targetSize: self.previewResolution, options: options) {
-            guard let img = $0 else { return }
-            picture?.image = img
-        }
         
-        options.deliveryMode = .highQualityFormat
-        self.fetchImage(asset, targetSize: self.resolution, options: options) {
-            guard let img = $0 else { return }
-            picture?.image = img
+        for op in [PHImageRequestOptionsDeliveryMode.fastFormat, .highQualityFormat] {
+            options.deliveryMode = op
+            self.fetchImage(asset, targetSize: self.previewResolution, options: options) {
+                guard var img = $0 else { return }
+                
+                if img.size.width > img.size.height {
+                    img = img.rotated ?? img
+                }
+                
+                picture?.image = img
+            }
         }
     }
     

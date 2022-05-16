@@ -38,8 +38,6 @@ class CardCollectionViewModel: ObservableObject {
         synchronize()
     }
     
-    // TODO: Identificar se foto é landscape
-    
     func synchronize() {
         guard let provider = appState?.provider else { return }
         
@@ -66,14 +64,7 @@ class CardCollectionViewModel: ObservableObject {
     }
     
     func didDismiss() {
-        guard let pic = foregroundPicture else { return }
-        pic.choice = .dismissed
-        repository.savePicture(pic)
-        pictures.removeFirst()
-        
-        if pictures.isEmpty {
-            didFinish()
-        }
+        runAction(.dismissed)
     }
     
     func willFavorite() {
@@ -82,8 +73,12 @@ class CardCollectionViewModel: ObservableObject {
     }
     
     func didFavorite() {
+        runAction(.favorited)
+    }
+    
+    func runAction(_ action: PictureChoice) {
         guard let pic = foregroundPicture else { return }
-        pic.choice = .favorited
+        pic.choice = action
         repository.savePicture(pic)
         pictures.removeFirst()
         

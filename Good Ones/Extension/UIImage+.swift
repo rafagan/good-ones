@@ -13,4 +13,9 @@ extension UIImage {
         guard let date = NSData(contentsOf: url) as? Data else { return nil }
         return UIImage(data: date)
     }
+    
+    var rotated: UIImage? {
+        guard let cg = cgImage else { return nil }
+        return UIImage(cgImage: cg, scale: scale, orientation: .right)
+    }
 }

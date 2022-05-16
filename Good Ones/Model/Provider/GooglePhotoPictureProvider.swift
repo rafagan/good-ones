@@ -10,7 +10,7 @@ import GPhotos
 
 class GooglePhotoPictureProvider: IPictureProvider {
     static func factoryPicture(asset: MediaItem, image: UIImage?) -> Picture {
-        Picture(
+        return Picture(
             id: asset.id,
             image: image,
             title: asset.mediaMetadata?.creationTime?.getFormattedDate(style: .short) ?? "",
@@ -63,7 +63,16 @@ class GooglePhotoPictureProvider: IPictureProvider {
     
     func fetchAsset(_ asset: MediaItem, in picture: Picture?) {
         guard let url = asset.baseUrl else { return }
-        picture?.image = UIImage.factoryFrom(url: url)
+        
+        var image = UIImage.factoryFrom(url: url)
+        
+        if let img = image {
+            if img.size.width > img.size.height {
+                image = image?.rotated
+            }
+        }
+        
+        picture?.image = image
     }
     
     func consume() -> [Picture] {

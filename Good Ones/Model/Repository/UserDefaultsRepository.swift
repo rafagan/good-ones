@@ -38,11 +38,9 @@ struct UserDefaultsRepository: IRepository {
     func savePicture(_ picture: Picture) {
         UserDefaults.standard.setValue(picture.choice.rawValue, forKey: "picture_\(picture.id)")
         UserDefaults.standard.synchronize()
-        print(pictureAlreadyBeenProcessed(id: picture.id))
     }
     
     func pictureAlreadyBeenProcessed(id: String) -> Bool {
-        print("picture_\(id): \(UserDefaults.standard.object(forKey: "picture_\(id)") != nil)")
         return UserDefaults.standard.string(forKey: "picture_\(id)") != nil
     }
     
