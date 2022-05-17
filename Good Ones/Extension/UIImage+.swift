@@ -18,4 +18,8 @@ extension UIImage {
         guard let cg = cgImage else { return nil }
         return UIImage(cgImage: cg, scale: scale, orientation: .right)
     }
+    
+    var data: Data? {
+        return cgImage?.dataProvider?.data as Data?
+    }
 }

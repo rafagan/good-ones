@@ -14,7 +14,8 @@ class LocalPictureProvider: IPictureProvider {
             image: UIImage(named: fileName)!,
             title: fileName,
             subtitle: "1970-01-01",
-            choice: .unknown
+            choice: .unknown,
+            date: nil
         )
     }
     

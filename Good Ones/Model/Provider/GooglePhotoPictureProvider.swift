@@ -15,7 +15,8 @@ class GooglePhotoPictureProvider: IPictureProvider {
             image: image,
             title: asset.mediaMetadata?.creationTime?.getFormattedDate(style: .short) ?? "",
             subtitle: asset.filename,
-            choice: .unknown
+            choice: .unknown,
+            date: asset.mediaMetadata?.creationTime
         )
     }
     
@@ -32,11 +33,11 @@ class GooglePhotoPictureProvider: IPictureProvider {
     
     func fetchAlbum(then: (() -> Void)? = nil) {
         GPhotosApi.mediaItems.list {[weak self] items in
-            self?.assets = items
+            guard let self = self else { return }
+            self.assets = items.filter({ !self.repository.pictureAlreadyBeenProcessed(id: $0.id) })
             then?()
         }
     }
-    
     
     func sync(then: @escaping () -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {

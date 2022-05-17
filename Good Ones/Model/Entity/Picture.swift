@@ -20,12 +20,14 @@ class Picture: Identifiable {
     let title: String
     let subtitle: String
     var choice: PictureChoice
+    var date: Date?
     
-    init(id: String, image: UIImage?, title: String, subtitle: String, choice: PictureChoice) {
+    init(id: String, image: UIImage?, title: String, subtitle: String, choice: PictureChoice, date: Date?) {
         self.id = id
         self.image = image
         self.title = title
         self.subtitle = subtitle
         self.choice = choice
+        self.date = date
     }
 }

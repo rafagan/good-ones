@@ -7,9 +7,11 @@
 
 import Foundation
 
+
 class CardCollectionViewModel: ObservableObject {
     let appState: AppState?
-    let imageSaver = ImageSaver()
+    let enablePerceptualHash = false
+    var imageSaver: ImageSaver?
     var repository = UserDefaultsRepository()
     var currentPictureIndex = 0
     
@@ -37,6 +39,23 @@ class CardCollectionViewModel: ObservableObject {
     init(appState: AppState? = nil) {
         self.appState = appState
         synchronize()
+        initImageSaver()
+    }
+    
+    func initImageSaver() {
+        if repository.photoProvider != .googlePhotos { return }
+        
+        imageSaver = ImageSaver()
+        CameraRollPictureProvider.fetchFavoriteAssets(collect: {[weak self] data, date in
+            guard let self = self else { return }
+            
+            if let data = data, self.enablePerceptualHash {
+                self.imageSaver?.templates.append(.perceptualHash(data))
+            } else
+            if let date = date {
+                self.imageSaver?.templates.append(.naive(date))
+            }
+        })
     }
     
     func synchronize() {
@@ -75,8 +94,8 @@ class CardCollectionViewModel: ObservableObject {
     
     func didFavorite() {
         if repository.photoProvider == .googlePhotos {
-            if let photo = foregroundPicture?.image {
-                imageSaver.savePhoto(photo)
+            if let picture = foregroundPicture {
+                imageSaver?.savePhotoIfNotExists(picture: picture)
             }
         }
         
