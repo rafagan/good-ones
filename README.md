@@ -11,6 +11,11 @@ The project consists in four screens:
 ![Demo](https://github.com/rafagan/good-ones/blob/master/demo.gif)
 
 # Task list
+- [ ] Write UI Tests
+- [ ] Write Unit Tests
+- [ ] Wrap Google Photos API integration to improve testability
+- [ ] Refactor CameraRollProvider to use a PhotoKit wrapper to facilitate testability and dependency injection
+- [ ] Refactor appState navigation to make animated transitions between screens
 - [ ] Improve perceptual hash detection
 - [X] Add heuristics to detect duplicates
 - [X] Download image to favorites smart album
