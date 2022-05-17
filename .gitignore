@@ -38,3 +38,5 @@ fastlane/sign&cert
 *.save
 ._*
 *.bak
+
+GoogleService-Info.plist
