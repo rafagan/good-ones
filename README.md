@@ -10,6 +10,24 @@ The project consists in four screens:
 
 ![Demo](https://github.com/rafagan/good-ones/blob/master/demo.gif)
 
+# Task list
+- [ ] Improve perceptual hash detection
+- [X] Add heuristics to detect duplicates
+- [X] Download image to favorites smart album
+- [X] Rotate landscape photos
+- [X] Build a repository version with UserDefaults
+- [X] Improve async photo loading
+- [X] Integrate Google Photos
+- [X] Auth with Google Cloud
+- [X] Build a setup screen to select provider
+- [X] Build a introduction screen
+- [X] Remove card animation and flow
+- [X] Add haptics and sounds
+- [X] Show feedback effect when starve photo list
+- [X] Work with favorites and dismisses
+- [X] Build card animations
+- [X] Organize architecture layers with SwiftUI and MVVM
+
 # Changelog (recent commits first):
 
     feat: Check duplicates in naive approach and using perceptual hash, save images in gallery as favorites, fetch favorites to compare, remove google photos processed pictures
