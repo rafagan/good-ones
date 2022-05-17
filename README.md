@@ -11,11 +11,13 @@ The project consists in four screens:
 ![Demo](https://github.com/rafagan/good-ones/blob/master/demo.gif)
 
 # Task list
+- [ ] Remove .pbxproj from git and use project generators like Twist and Xcodegen
 - [ ] Write UI Tests
 - [ ] Write Unit Tests
-- [ ] Wrap Google Photos API integration to improve testability
+- [ ] Refactor Provider flows to use Actors, Async/Await, PromiseKit or something more async and less callback oriented
+- [ ] Wrap Google Photos API integration to improve testability (maybe a Service Locator to abstract module dependencies)
 - [ ] Refactor CameraRollProvider to use a PhotoKit wrapper to facilitate testability and dependency injection
-- [ ] Refactor appState navigation to make animated transitions between screens
+- [ ] Refactor appState navigation to make animated transitions between screens (maybe create route management like Coordinator)
 - [ ] Improve perceptual hash detection
 - [X] Add heuristics to detect duplicates
 - [X] Download image to favorites smart album
