@@ -10,11 +10,28 @@ The project consists in four screens:
 
 ![Demo](https://github.com/rafagan/good-ones/blob/master/demo.gif)
 
-# Changelog:
+# Changelog (recent commits first):
+
+    feat: Check duplicates in naive approach and using perceptual hash, save images in gallery as favorites, fetch favorites to compare, remove google photos processed pictures
+Moving to part 3, the algorithm challenge, I used my last hours to build a photo duplication recognizer. To make a Proof of Concept, I considered only the Favorites smart library as templates to match (because probably all the downloaded Google Photos are there at this moment). Then I compared the favorite creation date (which I've set with the same value from Google Photos) with the creation date from my photo which came from cloud. After I integrated another library to make perceptual hash between images to check similarity, but I don't tested it enought to make it nice to use, thus I turned off for now.
+
+    feat: Download image favorited from Google to ios gallery and add to local favorites
+The final mandatory issue built was the image download and addition to local favorites when the provider is Google Photos
+
+    fix: Landscape photos, some minor refactors
+Time to fixes: some photos are capture in landscape mode and appears ugly in cards, making then shorter in height. Detecting landscape images and rotating them improved the experience.
+
+    feat: Google Photos integration
+Finally, the Google Photos integration. The Google Cloud authentication process is usually very painfull task to accomplish. Fortunatelly, I'm currently working with another API integrations with then, so the auth process was softer. The photo consuming from API also was easy because of the time spent organizing things in MVVM layers and in CameraRollProvider.
+
+    feat: OnboardingView, SetupView, refactor in camera loading
+Build the Setup and Onboarding screen, also working in a new Repository layer to persist data, like onboarding done and pictures already categorized. The architecture considerer future test implementations and more interesting databases, like Realm or Core Data (I've kept then off considering the challenge scope). Moving some business rules from the CardCollection screen to Setup Screen helped me to solve a lot of bugs and prepare the future to the Google Photos integration
 
     feat: Async image loading from photo library with slow and high quality
     fix: Code reorganization, better quality from camera roll
     feat: PhotoKit integration
+After completing the main screens, I started moving my atention to the model layer, specially the Camera Roll image fetching. After this sprint, the project began to gain robustness
+    
     feat: Navigation, congratulations effects
 The congratulation screen with particle effects and spring animation
 
